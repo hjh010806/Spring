@@ -1,0 +1,29 @@
+<!--<table th:fragment="tableFragment">-->
+<!--<link rel="stylesheet" href="table.css">-->
+<table th:fragment="tableFragment" class="m-auto">
+    <thead calss="attribute">
+    <tr>
+        <th class="min-w-[100px]">번호</th>
+        <th class="min-w-[250px]">제목</th>
+        <th class="min-w-[100px]">글쓴이</th>
+        <th class="min-w-[250px]">작성일시</th>
+        <th class="min-w-[100px]">게시판 종류</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="question, loop : ${paging}">
+        <td th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
+        <td>
+            <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+            <span th:if="${#lists.size(question.answerList) > 0}"
+                  th:text="${#lists.size(question.answerList)}">
+        </span>
+        </td>
+        <td><span th:if="${question.author != null}" th:text="${question.author.username}"></span></td>
+        <td th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
+        <td><span th:if="${question.category != null}" th:text="${question.category.categoryName}"></span></td>
+    </tr>
+
+    </tbody>
+</table>
+

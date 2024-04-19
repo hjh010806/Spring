@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Hello, sbb!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css">
+<!--    <link rel="stylesheet" href="/style.css">-->
+<!--    <link rel="stylesheet" href="/table.css">-->
+</head>
+<body>
+<!-- 네비게이션바 -->
+<nav th:replace="~{navbar :: navbarFragment}"></nav>
+<!-- 테이블 -->
+
+<!-- 기본 템플릿 안에 삽입될 내용 Start -->
+<th:block layout:fragment="content"></th:block>
+<!-- 기본 템플릿 안에 삽입될 내용 End -->
+<!--테일 윈드 script-->
+<script src="https://cdn.tailwindcss.com"></script>
+<script th:block layout:fragment="script"></script>
+</body>
+</html>
+
+
+<!--&lt;!&ndash; Bootstrap JS &ndash;&gt;-->
+<!--<script th:src="@{/bootstrap.min.js}"></script>-->
+<!-- 추가한 JavaScript 파일 -->
+<!--<script th:src="@{/dropbtn.js}"></script>-->
+<!--&lt;!&ndash; 자바스크립트 Start &ndash;&gt;-->
+<!--<th:block layout:fragment="script"></th:block>-->
+<!-- 자바스크립트 End -->
+</body>
+</html>
