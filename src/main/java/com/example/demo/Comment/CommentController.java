@@ -20,7 +20,7 @@ import java.security.Principal;
 @RequestMapping("/comment")
 @RequiredArgsConstructor
 @Controller
-public class CommentController {
+public class  CommentController {
     private final AnswerService answerService;
     private final CommentService commentService;
     private final UserService userService;

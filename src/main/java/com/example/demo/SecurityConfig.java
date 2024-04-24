@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import com.example.demo.SocialLogin.PrincipalOauth2UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,27 +17,41 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity(prePostEnabled = true)
+@EnableMethodSecurity(securedEnabled = true, prePostEnabled = true)
+@RequiredArgsConstructor
 public class SecurityConfig {
+    private final PrincipalOauth2UserService principalOauth2UserService;
+
     @Bean
-    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public  SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
                         .requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
                 .csrf((csrf) -> csrf
-                        .ignoringRequestMatchers(new AntPathRequestMatcher("/h2-console/**")))
+                        .ignoringRequestMatchers(new AntPathRequestMatcher("/h2/**")))
                 .headers((headers) -> headers
                         .addHeaderWriter(new XFrameOptionsHeaderWriter(
                                 XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN)))
 
                 .formLogin((formLogin) -> formLogin
                         .loginPage("/user/login")
-                        .defaultSuccessUrl("/"))
+                        .defaultSuccessUrl("/")
+                )
+
                 .logout((logout) -> logout
                         .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
                         .logoutSuccessUrl("/")
                         .invalidateHttpSession(true))
-        ;
+
+                // OAuth 로그인 설정 시작
+                .oauth2Login(login -> login
+                        .loginPage("/loginForm") // 로그인 페이지 url
+                        .userInfoEndpoint(end -> end.userService(principalOauth2UserService))
+                        );
+                    // OAuth가 들어오면 이 서비스로 매핑됨
+        // OAuth 로그인 설정 끝
+//        ;
+
         return http.build();
     }
 

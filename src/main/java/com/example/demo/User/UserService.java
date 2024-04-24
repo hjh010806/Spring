@@ -18,6 +18,11 @@ public class UserService {
         user.setUsername(username);
         user.setEmail(email);
         user.setPassword(passwordEncoder.encode(paswword));
+//        if(username.equalsIgnoreCase("admin"))
+//            user.setRole(UserRole.ADMIN.name());
+//        else
+//            user.setRole(UserRole.USER.name());
+        user.setRole(username.equalsIgnoreCase("admin") ? UserRole.ADMIN.name() : UserRole.USER.name());
         this.userRepository.save(user);
         return user;
     }
