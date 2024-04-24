@@ -78,7 +78,7 @@ public class ImageController {
 
     private final String uploadDir = "classpath:static/aaaa";
 
-    @GetMapping("/image/{filename}")
+    @GetMapping("/{filename}")
     public ResponseEntity<byte[]> getImage(@PathVariable String filename) {
         try {
             Path imagePath = Paths.get(uploadDir, filename);

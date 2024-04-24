@@ -20,6 +20,8 @@ public class QSiteUser extends EntityPathBase<SiteUser> {
 
     public static final QSiteUser siteUser = new QSiteUser("siteUser");
 
+    public final DateTimePath<java.time.LocalDateTime> createDate = createDateTime("createDate", java.time.LocalDateTime.class);
+
     public final StringPath email = createString("email");
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
@@ -27,6 +29,12 @@ public class QSiteUser extends EntityPathBase<SiteUser> {
     public final ListPath<com.example.demo.Image.Image, com.example.demo.Image.QImage> images = this.<com.example.demo.Image.Image, com.example.demo.Image.QImage>createList("images", com.example.demo.Image.Image.class, com.example.demo.Image.QImage.class, PathInits.DIRECT2);
 
     public final StringPath password = createString("password");
+
+    public final StringPath provider = createString("provider");
+
+    public final StringPath providerId = createString("providerId");
+
+    public final StringPath role = createString("role");
 
     public final StringPath url = createString("url");
 

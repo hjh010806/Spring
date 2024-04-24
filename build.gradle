@@ -41,8 +41,10 @@ dependencies {
 	// 비번 찾기
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 
-//	//이미지
-//	implementation 'org.springframework.boot:spring-boot-starter-web'
+	//구글 소셜
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
+
 
 
 }

@@ -10,6 +10,7 @@
         <th class="min-w-[100px]">게시판 종류</th>
     </tr>
     </thead>
+
     <tbody>
     <tr th:each="question, loop : ${paging}">
         <td th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
